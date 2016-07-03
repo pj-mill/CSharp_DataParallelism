@@ -7,6 +7,7 @@ namespace DataParallelism
         static void Main(string[] args)
         {
             A_ParallelFor.Run();
+            B_ParallelForEach.Run();
         }
     }
 }

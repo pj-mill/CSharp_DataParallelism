@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataParallelism.Utilities;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +11,15 @@ namespace DataParallelism.Examples
                 
         public static void Run()
         {
+            PrintUtility.PrintTitle("PARALLEL FOR EXAMPLE");
+            SimpleExample();
             DirectoryExample();
+        }
+
+        private static void SimpleExample()
+        {
+            PrintUtility.PrintSubTitle("SIMPLE EXAMPLE");
+            Parallel.For(5, 10, idx => DoWork(idx));
         }
 
         /// <summary>
@@ -18,6 +27,8 @@ namespace DataParallelism.Examples
         /// </summary>
         private static void DirectoryExample()
         {
+            PrintUtility.PrintSubTitle("DIRECTORY EXAMPLE");
+
             string path = @"C:\Users\Public\Pictures\Sample Pictures\";
             long totalSize = 0;
 
@@ -42,6 +53,11 @@ namespace DataParallelism.Examples
             // Print totals
             Console.WriteLine($"Directory '{path}':");
             Console.WriteLine($"{files.Length:N0} files, {totalSize:N0} bytes");
+        }
+
+        private static void DoWork(int num)
+        {
+            Console.WriteLine($"Product Of {num}: {num * num}");
         }
     }
 }
