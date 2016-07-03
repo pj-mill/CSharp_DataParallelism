@@ -11,8 +11,19 @@ namespace DataParallelism.Examples
     {
         public static void Run()
         {
-            PrintUtility.PrintTitle("PARALLEL FOREACH EXAMPLE");
+            PrintUtility.PrintTitle("PARALLEL FOREACH");
 
+        }
+
+        private static void SimpleExample()
+        {
+            PrintUtility.PrintSubTitle("SIMPLE EXAMPLE");
+            
+        }
+
+        private static void DoWork(int num)
+        {
+            Console.WriteLine($"Product Of {num}: {num * num}");
         }
     }
 }
