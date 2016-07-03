@@ -1,8 +1,6 @@
 ﻿using DataParallelism.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataParallelism.Examples
@@ -12,13 +10,15 @@ namespace DataParallelism.Examples
         public static void Run()
         {
             PrintUtility.PrintTitle("PARALLEL FOREACH");
-
+            SimpleExample();
         }
 
         private static void SimpleExample()
         {
             PrintUtility.PrintSubTitle("SIMPLE EXAMPLE");
-            
+
+            int[] nums = Enumerable.Range(0, 10).ToArray();
+            Parallel.ForEach(nums, (num) => { DoWork(num); });
         }
 
         private static void DoWork(int num)

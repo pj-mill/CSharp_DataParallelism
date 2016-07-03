@@ -8,6 +8,8 @@ namespace DataParallelism
         {
             A_ParallelFor.Run();
             B_ParallelForEach.Run();
+            C_Locking.Run();
+
         }
     }
 }
