@@ -17,16 +17,16 @@ namespace DataParallelism.Examples
         public static void Run()
         {
             PrintUtility.PrintTitle("THREAD LOCAL VARIABLES");
-            ThreadLocalForLoop();
-            ThreadLocalForEachLoop();
+            int[] nums = Enumerable.Range(0, 1000000).ToArray();
+            ThreadLocalForLoop(nums);
+            ThreadLocalForEachLoop(nums);
         }
 
-        private static void ThreadLocalForLoop()
+        private static void ThreadLocalForLoop(int[] nums)
         {
             PrintUtility.PrintSubTitle("Parallel.For Example");
 
-            // Vars
-            int[] nums = Enumerable.Range(0, 1000000).ToArray();
+            // Vars            
             long total = 0;
 
             // Use type parameter to make subtotal a long, not an int
@@ -37,7 +37,7 @@ namespace DataParallelism.Examples
                 (idx, loop, subtotal) =>    // method invoked by the loop on each iteration
                 {
                     subtotal += nums[idx];
-                    return subtotal;            // value to be passed to next iteration
+                    return subtotal;        // value to be passed to next iteration
                 },
                     // Method to be executed when each partition has completed.
                     // finalResult is the final value of subtotal for a particular partition.
@@ -47,12 +47,11 @@ namespace DataParallelism.Examples
             Console.WriteLine("The total from Parallel.For is {0:N0}", total);
         }
 
-        private static void ThreadLocalForEachLoop()
+        private static void ThreadLocalForEachLoop(int[] nums)
         {
             PrintUtility.PrintSubTitle("Parallel.ForEach Example");
 
             // Vars
-            int[] nums = Enumerable.Range(0, 1000000).ToArray();
             long total = 0;
 
             // First type parameter is the type of the source elements

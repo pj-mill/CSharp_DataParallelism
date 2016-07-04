@@ -48,6 +48,8 @@
     <Compile Include="Examples\B_ParallelForEach.cs" />
     <Compile Include="Examples\C_Locking.cs" />
     <Compile Include="Examples\D_ThreadLocalVariables.cs" />
+    <Compile Include="Examples\E_ExceptionHandling.cs" />
+    <Compile Include="Examples\F_LoopCancellation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\PrintUtility.cs" />

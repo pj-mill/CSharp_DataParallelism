@@ -6,10 +6,11 @@ namespace DataParallelism
     {
         static void Main(string[] args)
         {
-            A_ParallelFor.Run();
-            B_ParallelForEach.Run();
+            //A_ParallelFor.Run();
+            //B_ParallelForEach.Run();
             //C_Locking.Run();
-            D_ThreadLocalVariables.Run();
+            //D_ThreadLocalVariables.Run();
+            E_ExceptionHandling.Run();
         }
     }
 }
