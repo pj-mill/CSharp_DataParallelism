@@ -39,7 +39,7 @@ namespace DataParallelism.Examples
                 {
                     double sqrt = Math.Sqrt(num);
                     Console.WriteLine($"{sqrt} on {Thread.CurrentThread.ManagedThreadId}");
-                    options.CancellationToken.ThrowIfCancellationRequested();
+                    options.CancellationToken.ThrowIfCancellationRequested(); // This could be called prior to the previous 2 statements
                 });
             }
             catch (OperationCanceledException ex)
