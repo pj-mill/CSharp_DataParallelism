@@ -10,7 +10,8 @@ namespace DataParallelism
             //B_ParallelForEach.Run();
             //C_Locking.Run();
             //D_ThreadLocalVariables.Run();
-            E_ExceptionHandling.Run();
+            //E_ExceptionHandling.Run();
+            F_LoopCancellation.Run();
         }
     }
 }
