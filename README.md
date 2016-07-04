@@ -10,7 +10,7 @@ Some examples of data parallelism with TPL using Parallel.For, ForEach, Partitio
 | Thread Local Variables | Demonstrates how to avoid the overhead of synchronizing a large number of accesses to a shared state. Instead of writing to a shared resource on each iteration, you compute and store the value until all iterations for the task are complete |
 |Exception Handling | An example of how to catch exceptions during a 'Parallel.ForEach' process. This example captures the exceptions and outputs them to a 'ConcurrentQueue' collection for later processing. |
 |Cancelling a Parallel Loop | Uses 'CancellationTokenSource' to capture a canellation request |
-|Performance Enhancements | Demonstrates the use of 'Partitioner' to increase performance when iterating over a small body collection. This example compares a standard 'foreach' against a 'Parallel.ForEach' without using Partitioner, against a 'Parallel.ForEach' while using Partitioner. All processes are timed and results printed to console.|
+|Performance Enhancements | Demonstrates the use of 'Partitioner' to increase performance when iterating over a small body collection. This example compares a standard 'foreach' against a 'Parallel.ForEach' without using Partitioner, and against a 'Parallel.ForEach' while using Partitioner. All processes are timed and results printed to console.|
 
 ---
 ####Language Features
