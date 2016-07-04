@@ -7,19 +7,20 @@ namespace DataParallelism.Utilities
         #region PRINT METHODS
         public static void PrintTitle(string title)
         {
+            string divider = new String('*', 70);
             Console.WriteLine("");
-            Console.WriteLine("***************************************************");
+            Console.WriteLine(divider);
             Console.WriteLine(title);
-            Console.WriteLine("***************************************************");
+            Console.WriteLine(divider);
         }
 
         public static void PrintSubTitle(string title)
         {
+            string divider = new String('=', 70);
             Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("============================================================================================");
+            Console.WriteLine(divider);
             Console.WriteLine(title);
-            Console.WriteLine("============================================================================================");
+            Console.WriteLine(divider);
         }
         #endregion
     }
