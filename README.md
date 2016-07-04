@@ -26,6 +26,7 @@ A few examples of data parallelism with TPL
 |CancellationTokenSource|
 |CancellationTokenSource.Token|
 |StopWatch|
+|System.IO|
 |Directory|
 |Graphics|
 |Bitmap|
