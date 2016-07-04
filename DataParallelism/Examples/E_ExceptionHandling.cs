@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataParallelism.Utilities;
+using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace DataParallelism.Examples
     {
         public static void Run()
         {
+            PrintUtility.PrintTitle("TEXCEPTION HANDLING");
             // Create some random data to process in parallel.
             // There is a good probability this data will cause some exceptions to be thrown.
             byte[] nums = new byte[10000];
