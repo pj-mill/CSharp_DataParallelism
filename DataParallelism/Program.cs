@@ -11,7 +11,8 @@ namespace DataParallelism
             //C_Locking.Run();
             //D_ThreadLocalVariables.Run();
             //E_ExceptionHandling.Run();
-            F_LoopCancellation.Run();
+            //F_LoopCancellation.Run();
+            G_PerformanceEnhancement.Run();
         }
     }
 }
