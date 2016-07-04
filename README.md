@@ -1,5 +1,5 @@
 # CSharp_DataParallelism
-A few examples of data parallelism with TPL using Parallel.For, ForEach, Partitioner, and more ...
+Some examples of data parallelism with TPL using Parallel.For, ForEach, Partitioner, and more ...
 
 ---
 |Feature |Description |
