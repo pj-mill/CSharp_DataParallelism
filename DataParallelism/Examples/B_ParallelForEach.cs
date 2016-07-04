@@ -1,6 +1,9 @@
 ﻿using DataParallelism.Utilities;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DataParallelism.Examples
@@ -11,6 +14,7 @@ namespace DataParallelism.Examples
         {
             PrintUtility.PrintTitle("PARALLEL FOREACH");
             SimpleExample();
+            TimedExample();
         }
 
         private static void SimpleExample()
@@ -19,6 +23,67 @@ namespace DataParallelism.Examples
 
             int[] nums = Enumerable.Range(0, 10).ToArray();
             Parallel.ForEach(nums, (num) => { DoWork(num); });
+        }
+
+        private static void TimedExample()
+        {
+            PrintUtility.PrintSubTitle("TIMED EXAMPLE");
+
+            List<string> fruits = new List<string>();
+            fruits.Add("Apple");
+            fruits.Add("Banana");
+            fruits.Add("Bilberry");
+            fruits.Add("Blackberry");
+            fruits.Add("Blackcurrant");
+            fruits.Add("Blueberry");
+            fruits.Add("Cherry");
+            fruits.Add("Coconut");
+            fruits.Add("Cranberry");
+            fruits.Add("Date");
+            fruits.Add("Fig");
+            fruits.Add("Grape");
+            fruits.Add("Guava");
+            fruits.Add("Jack-fruit");
+            fruits.Add("Kiwi fruit");
+            fruits.Add("Lemon");
+            fruits.Add("Lime");
+            fruits.Add("Lychee");
+            fruits.Add("Mango");
+            fruits.Add("Melon");
+            fruits.Add("Olive");
+            fruits.Add("Orange");
+            fruits.Add("Papaya");
+            fruits.Add("Plum");
+            fruits.Add("Pineapple");
+            fruits.Add("Pomegranate");
+
+            // Local Actions
+            Func<string> divider = () => { return new String('-', 70); };
+            Action<string> printTitleAction = (title) => 
+            {
+                Console.WriteLine(divider());
+                Console.WriteLine(title);
+                Console.WriteLine(divider());
+            };
+            Action<string> printItemAction = (fruit) => {Console.WriteLine($"Fruit Name: {fruit}, Thread Id= {Thread.CurrentThread.ManagedThreadId}"); };
+            Action<double> printTimeAction = (time) => 
+            {
+                Console.WriteLine(divider());
+                Console.WriteLine($"Execution time = {time} seconds");
+                Console.WriteLine(divider());
+            };
+
+            // Normal ForEach
+            printTitleAction("Printing list using foreach loop");
+            var stopWatch = Stopwatch.StartNew();
+            foreach (string fruit in fruits) { printItemAction(fruit); }
+            printTimeAction(stopWatch.Elapsed.TotalSeconds);
+
+            // Parallel.ForEach
+            printTitleAction("Printing list using Parallel.ForEach");
+            stopWatch = Stopwatch.StartNew();
+            Parallel.ForEach(fruits, fruit => { printItemAction(fruit); });
+            printTimeAction(stopWatch.Elapsed.TotalSeconds);            
         }
 
         private static void DoWork(int num)
