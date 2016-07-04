@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace DataParallelism.Examples
 {
@@ -15,6 +17,7 @@ namespace DataParallelism.Examples
             PrintUtility.PrintTitle("PARALLEL FOREACH");
             SimpleExample();
             TimedExample();
+            ManipulateImageExample();
         }
 
         private static void SimpleExample()
@@ -84,6 +87,61 @@ namespace DataParallelism.Examples
             stopWatch = Stopwatch.StartNew();
             Parallel.ForEach(fruits, fruit => { printItemAction(fruit); });
             printTimeAction(stopWatch.Elapsed.TotalSeconds);            
+        }
+
+        private static void ManipulateImageExample()
+        {
+            PrintUtility.PrintSubTitle("TIMED BITMAP MANIPULATION EXAMPLE");
+
+            // Vars
+            Stopwatch stopWatch = new Stopwatch();
+
+            // Get Image Files
+            String[] files = Directory.GetFiles(@"C:\Users\Public\Pictures\Sample Pictures", "*.jpg");
+
+            // Create new directoty
+            String newDir = @"C:\Users\Public\Pictures\Sample Pictures\Modified";            
+            Directory.CreateDirectory(newDir);
+            
+            // Local Actions
+            Func<string> divider = () => { return new String('-', 70); };
+            Action<string> printTitleAction = (title) =>
+            {
+                Console.WriteLine(divider());
+                Console.WriteLine(title);
+                Console.WriteLine(divider());
+            };            
+            Action<double> printTimeAction = (time) =>
+            {
+                Console.WriteLine(divider());
+                Console.WriteLine($"Execution time = {time} seconds");
+                Console.WriteLine(divider());
+            };
+            Action<string> manipulateImage = (file) =>
+            {
+                String filename = Path.GetFileName(file);
+                var image = new Bitmap(file);
+                image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                image.Save(Path.Combine(newDir, filename));
+            };
+
+            // Normal ForEach
+            printTitleAction("Printing list using foreach loop");
+            stopWatch = Stopwatch.StartNew();
+            foreach(string file in files)
+            {
+                manipulateImage(file);
+            }
+            printTimeAction(stopWatch.Elapsed.TotalSeconds);
+
+            // Parallel.ForEach
+            printTitleAction("Printing list using Parallel.ForEach");
+            stopWatch = Stopwatch.StartNew();
+            Parallel.ForEach(files, (file) =>
+            {
+                manipulateImage(file);
+            });
+            printTimeAction(stopWatch.Elapsed.TotalSeconds);
         }
 
         private static void DoWork(int num)
