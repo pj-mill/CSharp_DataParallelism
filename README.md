@@ -11,6 +11,7 @@ Some examples of data parallelism with TPL using Parallel.For, ForEach, Partitio
 |Exception Handling | An example of how to catch exceptions during a 'Parallel.ForEach' process. This example captures the exceptions and outputs them to a 'ConcurrentQueue' collection for later processing. |
 |Cancelling a Parallel Loop | Uses 'CancellationTokenSource' to capture a canellation request |
 |Performance Enhancements | Demonstrates the use of 'Partitioner' to increase performance when iterating over a small body collection. This example compares a standard 'foreach' against a 'Parallel.ForEach' without using Partitioner, and against a 'Parallel.ForEach' while using Partitioner. All processes are timed and results printed to console.|
+|Parallel.Invoke| Demonstrates how to invoke 3 delegates that process a sinlge BlockingCollection |
 
 ---
 ####Language Features
