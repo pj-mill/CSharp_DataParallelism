@@ -51,6 +51,7 @@
     <Compile Include="Examples\E_ExceptionHandling.cs" />
     <Compile Include="Examples\F_LoopCancellation.cs" />
     <Compile Include="Examples\G_PerformanceEnhancement.cs" />
+    <Compile Include="Examples\H_ParallelInvoke.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\PrintUtility.cs" />
